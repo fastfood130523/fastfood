@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure-(u9)u^2ta6+78!2^kqb(0^o2y!v7z@80=wv#az#+v4@+@m^qje
 DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'fast-food.onrender.com',]
-
+ALLOWED_HOSTS = ['127.0.0.1', 'fast-food-4x1v.onrender.com',]
 
 # Application definition
 
