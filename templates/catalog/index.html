@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "catalog" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "catalog" %}</h2>
+{% if catalog.count > 0 %}
+<div class="row">
+	<table id="myTable" class="table-manager" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "category_title" %}</th>
+				<th>{% trans "catalog_title" %}</th>
+				<th>{% trans "catalog_details" %}</th>
+				<th>{% trans "price" %}</th>
+				<th>{% trans "photo" %}</th>
+				<th><a href="{% url 'catalog_create' %}">{% trans "Create" %}</a></th>					
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in catalog %}
+			<tr>
+				<td>
+					<p>{{ p.category }}</p>
+				</td>
+				<td>
+					<p>{{ p.title }}</p>
+				</td>
+				<td>
+					<p>{{ p.details }}</p>
+				</td>
+				<td>
+					<p>{{ p.price }}</p>
+				</td>
+				<td>
+					{% if p.photo.url != None %}					
+						{% if p.photo.url == "/media/images/food1.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food1.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food2.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food2.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food3.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food3.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food4.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food4.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food5.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food5.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food6.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food6.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food7.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food7.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food8.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food8.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food9.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food9.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food10.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food10.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food11.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food11.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food12.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food12.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food13.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food13.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food14.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food14.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food15.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food15.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food16.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food16.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food17.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food17.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food18.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food18.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food19.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food19.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food20.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food20.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food21.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food21.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food22.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food22.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food23.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food23.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food24.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food24.jpg' %}" alt="{{ p.title }}" >    
+						{% elif p.photo.url == "/media/images/food25.jpg" %}
+							<img style="width:100%; max-width:200px;" src="{% static 'images/food25.jpg' %}" alt="{{ p.title }}" >    
+						{% else %}
+							{% if p.photo.url != None %}
+								<img style="width:100%; max-width:200px;" src="{{ p.photo.url}}" alt="{{ p.title }}" >
+							{% endif %}
+						{% endif %}								
+					{% endif %}	
+				</td>
+				<td>
+					<a href="{% url 'catalog_edit' p.id %}">{% trans "Change" %}</a> |
+					<a href="{% url 'catalog_read' p.id %}">{% trans "Read" %}</a> |
+					<a onclick="return confirm('Удалить запись?')" href="{% url 'catalog_delete' p.id %}">{% trans "Delete" %}</a>
+				</td>			
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<a href="{% url 'catalog_create' %}">{% trans "Create" %}</a>
+{% endif %}
+{% endblock content %}
+

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "My purchases" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "My purchases" %}</h2>
+{% if sale.count > 0 %}
+{% for s in sale %}	
+<div class="row justify-content-center">
+		<div class="card" style="width: 100%; margin-bottom: 10px">
+			<div class="card-header">
+				<h6>{{ s.saleday | date:"d.m.Y"}}</h6>
+				<h5>{{ s.catalog.category }}</h5>
+			</div>
+			<div class="card-body">			
+				<div class="row">
+					<div class="col-md-2">
+						{% if s.catalog.photo.url != None %}
+							{% if s.catalog.photo.url == "/media/images/food1.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food1.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food2.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food2.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food3.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food3.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food4.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food4.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food5.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food5.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food6.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food6.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food7.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food7.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food8.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food8.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food9.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food9.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food10.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food10.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food11.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food11.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food12.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food12.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food13.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food13.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food14.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food14.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food15.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food15.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food16.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food16.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food17.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food17.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food18.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food18.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food19.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food19.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food20.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food20.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food21.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food21.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food22.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food22.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food23.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food23.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food24.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food24.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% elif s.catalog.photo.url == "/media/images/food25.jpg" %}
+								<img style="width:100%; max-width:200px;" src="{% static 'images/food25.jpg' %}" alt="{{ s.catalog.title }}" >    
+							{% else %}
+								{% if s.catalog.photo.url != None %}
+									<img style="width:100%; max-width:200px;" src="{{ s.catalog.photo.url}}" alt="{{ s.catalog.title }}" >
+								{% endif %}
+							{% endif %}
+						{% endif %}
+					</div>
+					<div class="col-md-4">
+						<h5 class="card-title"><strong>{{ s.catalog.title }}</strong></h5>
+					</div>
+					<div class="col-md-6">
+						<form class="form-vertical" method="post" style="width: 100%" name="reviewForm">
+							{% csrf_token %}
+							<h5 class="card-title"><strong>{{ s.quantity }}ˣ{{ s.price }}</strong> 〒</h5>
+							<h4 class="card-title"><strong>{{ s.total }}</strong> 〒</h4>
+							<input hidden type="text" name="sale_id" size="0" value="{{ s.id }}">							
+							<!--<div id="div_review{{ s.id }}" {% if s.rating > 0 %}{% else %} hidden {% endif %} >-->
+							<div id="div_review{{ s.id }}" >
+								<div class="control-group">
+									<label class="control-label"><strong>{% trans "Rating" %}:</strong></label>
+									<input required type="number" id="rating" name="rating" value="{{ s.rating }}" min="1" max="5"/>
+								</div>
+								<div class="control-group">
+									<label class="control-label"><strong>{% trans "Rating details" %}:</strong></label>								
+									<textarea required id="rating_details" name="rating_details" style="width:100%;" rows="3">{{ s.details }}</textarea>
+								</div>
+								<div class="form-actions" style="margin-bottom: 10px">
+									<button type="submit" name="review" class="btn btn-outline-success">{% if s.rating > 0 %} {% trans "Change Review" %} {% else %} {% trans "Review" %}{% endif %}</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>					
+			</div>
+			<div class="card-footer text-muted">
+				
+			</div>
+		</div>		
+</div>
+{% endfor %}
+{% endif %}
+<script>
+	// Показ поля для ввода отзыва
+	/*
+	function show_review(id) {
+		var div = document.getElementById('div_review'+id);
+		div.style.visibility ='visible'
+		//console.log("Возможность отправить отзыв теперь видимый");
+		var input = document.getElementById('btn_show_review'+id);
+		input.style.visibility ='hidden'
+		//console.log("Кнопка сокрыта");
+	}
+	*/
+</script>
+{% endblock content %}
