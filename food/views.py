@@ -297,7 +297,8 @@ def basket(request):
                     #print("Сохранено")
                     sale.save()
                     # отправка сообщения
-                    send_email("alibekalihan71@gmail.com", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
+                    #send_email("alibekalihan71@gmail.com", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
+                    send_email("Mabylmazhitov@gmail.com", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
                 # Очистить корзину
                 #print("Корзина очищена")
                 basket.delete()
