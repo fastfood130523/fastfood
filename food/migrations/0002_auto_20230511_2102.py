@@ -11,7 +11,7 @@ def beginning(apps, schema_editor):
     
     # Суперпользователь id-1
     user = User.objects.create_superuser(username='root',
-    email='travel060523@mail.ru',
+    email='alibekalihan71@gmail.com',
     password='SsNn5678+-@', 
     last_login=datetime.now())
     print("Суперпользователь создан")
@@ -22,7 +22,7 @@ def beginning(apps, schema_editor):
     print("Группа менеджеров создана")
     
     # Пользователь с ролью менеджера id2
-    user = User.objects.create_user(username='manager', password='Ss0066+-', email='manager@mail.ru', first_name='Менеджер', last_name='', last_login=datetime.now())
+    user = User.objects.create_user(username='manager', password='Ss0066+-', email='travel060523@mail.ru', first_name='Менеджер', last_name='', last_login=datetime.now())
     managers.user_set.add(user)
     print("Менеджер добавлен в группу менеджеров")
 

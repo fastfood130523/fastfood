@@ -22,6 +22,8 @@ import csv
 import xlwt
 from io import BytesIO
 
+import smtplib
+
 # Подключение моделей
 from django.contrib.auth.models import User, Group
 
@@ -229,8 +231,9 @@ def catalog_list(request):
                 # Отправить товар в корзину
                 basket = Basket()
                 basket.catalog_id = catalog_id
-                basket.price = float(int(price.replace(",00","")))
+                #basket.price = float(int(price.replace(",00","")))
                 #basket.price = price
+                basket.price = float(request.POST.dict().get("price").replace(',','.'))
                 basket.user_id = user
                 basket.save()
                 message = _('Item added to basket')
@@ -293,6 +296,8 @@ def basket(request):
                     sale.details = ""
                     #print("Сохранено")
                     sale.save()
+                    # отправка сообщения
+                    send_email("alibekalihan71@gmail.com", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
                 # Очистить корзину
                 #print("Корзина очищена")
                 basket.delete()
@@ -655,6 +660,47 @@ def news_read(request, id):
     except Exception as exception:
         print(exception)
         return HttpResponse(exception)
+
+###################################################################################################
+
+# Отправка почты.
+def send_email(to, subject, message):
+    try:
+        print(to)
+        print(subject)
+        print(message)
+        HOST = "smtp.mail.ru"
+        # От кого (пароль для внешних приложений)
+        FROM = "shop260222@mail.ru"
+        PASSWORD = "Nn27t2PMDiJ7rSqWeFuw"
+        # Кому
+        TO = to
+        # Тема
+        SUBJECT = subject
+        #Create your SMTP session 
+        smtp = smtplib.SMTP(HOST, 25) 
+        #Use TLS to add security 
+        smtp.starttls() 
+        #User Authentication - Пароль для внешних приложений
+        smtp.login(FROM, PASSWORD)
+        #Defining The Message 
+        MESSAGE = message 
+        # Тело письма
+        BODY = "\r\n".join((
+            "From: %s" % FROM,
+            "To: %s" % TO,
+            "Subject: %s" % SUBJECT ,
+            "",
+            MESSAGE
+        ))
+        BODY = BODY.encode('utf-8')
+        #Sending the Email
+        smtp.sendmail(FROM, TO, BODY) 
+        #Terminating the session 
+        smtp.quit() 
+        print ("Email sent successfully!") 
+    except Exception as ex: 
+        print("Something went wrong....",ex)
 
 ###################################################################################################
 
