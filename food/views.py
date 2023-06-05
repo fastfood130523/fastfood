@@ -299,53 +299,6 @@ def basket(request):
                     # отправка сообщения
                     #send_email("alibekalihan71@gmail.com", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
                     #send_email("fastfood130523@mail.ru", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
-                    #print(to)
-                    #print(subject)
-                    #print(message)
-                    HOST = "smtp.mail.ru"
-                    print(HOST)
-                    # От кого (пароль для внешних приложений)
-                    FROM = "shop260222@mail.ru"
-                    print(FROM)
-                    PASSWORD = "Nn27t2PMDiJ7rSqWeFuw"
-                    print(PASSWORD)
-                    # Кому
-                    TO = "alibekalihan71@gmail.com"
-                    print(TO)
-                    # Тема
-                    SUBJECT =  "Заказ #" + str(sale.id)
-                    print(SUBJECT)
-                    #Create your SMTP session 
-                    smtp = smtplib.SMTP(HOST, 25) 
-                    print("smtp = smtplib.SMTP(HOST, 25)")
-                    #Use TLS to add security 
-                    smtp.starttls() 
-                    print("smtp.starttls() ")
-                    #User Authentication - Пароль для внешних приложений
-                    smtp.login(FROM, PASSWORD)
-                    print("smtp.login(FROM, PASSWORD)")
-                    #Defining The Message 
-                    MESSAGE = str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details) 
-                    print(MESSAGE)
-                    # Тело письма
-                    BODY = "\r\n".join((
-                        "From: %s" % FROM,
-                        "To: %s" % TO,
-                        "Subject: %s" % SUBJECT ,
-                        "",
-                        MESSAGE
-                    ))
-                    print("BODY")
-                    BODY = BODY.encode('utf-8')
-                    print(BODY)
-                    #Sending the Email
-                    smtp.sendmail(FROM, TO, BODY) 
-                    print("smtp.sendmail(FROM, TO, BODY) ")
-                    #Terminating the session 
-                    smtp.quit() 
-                    print("smtp.quit()")
-                    print ("Email sent successfully!") 
-
                 # Очистить корзину
                 #print("Корзина очищена")
                 basket.delete()
