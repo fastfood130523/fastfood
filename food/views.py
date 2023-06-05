@@ -667,25 +667,34 @@ def news_read(request, id):
 # Отправка почты.
 def send_email(to, subject, message):
     try:
-        print(to)
-        print(subject)
-        print(message)
+        #print(to)
+        #print(subject)
+        #print(message)
         HOST = "smtp.mail.ru"
+        print(HOST)
         # От кого (пароль для внешних приложений)
         FROM = "shop260222@mail.ru"
+        print(FROM)
         PASSWORD = "Nn27t2PMDiJ7rSqWeFuw"
+        print(PASSWORD)
         # Кому
         TO = to
+        print(TO)
         # Тема
         SUBJECT = subject
+        print(SUBJECT)
         #Create your SMTP session 
         smtp = smtplib.SMTP(HOST, 25) 
+        print("smtp = smtplib.SMTP(HOST, 25)")
         #Use TLS to add security 
         smtp.starttls() 
+        print("smtp.starttls() ")
         #User Authentication - Пароль для внешних приложений
         smtp.login(FROM, PASSWORD)
+        print("smtp.login(FROM, PASSWORD)")
         #Defining The Message 
         MESSAGE = message 
+        print(MESSAGE)
         # Тело письма
         BODY = "\r\n".join((
             "From: %s" % FROM,
@@ -694,14 +703,19 @@ def send_email(to, subject, message):
             "",
             MESSAGE
         ))
+        print("BODY")
         BODY = BODY.encode('utf-8')
+        print(BODY)
         #Sending the Email
         smtp.sendmail(FROM, TO, BODY) 
+        print("smtp.sendmail(FROM, TO, BODY) ")
         #Terminating the session 
         smtp.quit() 
+        print("smtp.quit()")
         print ("Email sent successfully!") 
     except Exception as ex: 
         print("Something went wrong....",ex)
+
 
 ###################################################################################################
 
