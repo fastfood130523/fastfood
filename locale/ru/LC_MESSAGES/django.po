@@ -410,7 +410,7 @@ msgstr "Сброс"
 
 #: .\templates\catalog\list.html:183
 msgid "Add to basket"
-msgstr "Добваить в корзину"
+msgstr "Добавить в корзину"
 
 #: .\templates\category\index.html:12
 msgid "Category_title"
