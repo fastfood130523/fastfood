@@ -22,7 +22,7 @@ import csv
 import xlwt
 from io import BytesIO
 
-import smtplib
+#import smtplib
 
 # Отправка почты
 from django.core.mail import send_mail
@@ -300,16 +300,14 @@ def basket(request):
                     #print("Сохранено")
                     sale.save()
                     # отправка сообщения
-                    send_mail(
-                        "Заказ #" + str(sale.id),
-                        str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details),
-                        "shop260222@mail.ru",
-                        ["alibekalihan71@gmail.com", "fastfood130523@mail.ru"],
-                        fail_silently=True,
-                    )
-                    print("Сообщение отпавленно")
-                    #send_email("alibekalihan71@gmail.com", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
-                    #send_email("fastfood130523@mail.ru", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
+                    #send_mail(
+                    #    "Заказ #" + str(sale.id),
+                    #    str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details),
+                    #    "shop260222@mail.ru",
+                    #    ["alibekalihan71@gmail.com", "fastfood130523@mail.ru"],
+                    #    fail_silently=True,
+                    #)
+                    #print("Сообщение отпавленно")
                 # Очистить корзину
                 #print("Корзина очищена")
                 basket.delete()
