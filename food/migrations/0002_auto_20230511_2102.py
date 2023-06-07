@@ -22,7 +22,7 @@ def beginning(apps, schema_editor):
     print("Группа менеджеров создана")
     
     # Пользователь с ролью менеджера id2
-    user = User.objects.create_user(username='manager', password='Ss0066+-', email='travel060523@mail.ru', first_name='Менеджер', last_name='', last_login=datetime.now())
+    user = User.objects.create_user(username='manager', password='Ss0066+-', email='fastfood130523@mail.ru', first_name='Менеджер', last_name='', last_login=datetime.now())
     managers.user_set.add(user)
     print("Менеджер добавлен в группу менеджеров")
 
@@ -641,5 +641,10 @@ class Migration(migrations.Migration):
                         (SELECT strftime('%d.%m.%Y',deliveryday) || ' - ' || movement FROM delivery WHERE sale_id = sale.id AND deliveryday = (SELECT MAX(deliveryday) AS Expr1 FROM delivery AS S WHERE  (sale_id = sale.id) )) AS final
                         FROM sale LEFT JOIN view_catalog ON sale.catalog_id = view_catalog.id
                         LEFT JOIN auth_user ON sale.user_id = auth_user.id"""),
+        #migrations.RunSQL("""CREATE VIEW view_sale AS
+        #                SELECT sale.id, username, saleday, catalog_id, view_catalog.category, view_catalog. title, view_catalog.photo, sale.price, sale.quantity, sale.price*sale.quantity AS total, user_id, rating, sale.details,
+        #                (SELECT to_char( deliveryday, 'DD.MM.YYYY') || ' - ' || movement FROM delivery WHERE sale_id = sale.id AND deliveryday = (SELECT MAX(deliveryday) AS Expr1 FROM delivery AS S WHERE  (sale_id = sale.id) )) AS final
+        #                FROM sale LEFT JOIN view_catalog ON sale.catalog_id = view_catalog.id
+        #                LEFT JOIN auth_user ON sale.user_id = auth_user.id"""),
     ]
 

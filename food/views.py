@@ -24,6 +24,9 @@ from io import BytesIO
 
 import smtplib
 
+# Отправка почты
+from django.core.mail import send_mail
+
 # Подключение моделей
 from django.contrib.auth.models import User, Group
 
@@ -297,6 +300,14 @@ def basket(request):
                     #print("Сохранено")
                     sale.save()
                     # отправка сообщения
+                    send_mail(
+                        "Заказ #" + str(sale.id),
+                        str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details),
+                        "shop260222@mail.ru",
+                        ["alibekalihan71@gmail.com", "fastfood130523@mail.ru"],
+                        fail_silently=False,
+                    )
+                    print("Сообщение отпавленно")
                     #send_email("alibekalihan71@gmail.com", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
                     #send_email("fastfood130523@mail.ru", "Заказ #" + str(sale.id), str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
                 # Очистить корзину
@@ -664,57 +675,83 @@ def news_read(request, id):
 
 ###################################################################################################
 
-# Отправка почты.
-def send_email(to, subject, message):
-    try:
-        #print(to)
-        #print(subject)
-        #print(message)
-        HOST = "smtp.mail.ru"
-        print(HOST)
-        # От кого (пароль для внешних приложений)
-        FROM = "shop260222@mail.ru"
-        print(FROM)
-        PASSWORD = "Nn27t2PMDiJ7rSqWeFuw"
-        print(PASSWORD)
-        # Кому
-        TO = to
-        print(TO)
-        # Тема
-        SUBJECT = subject
-        print(SUBJECT)
-        #Create your SMTP session 
-        smtp = smtplib.SMTP(HOST, 25) 
-        print("smtp = smtplib.SMTP(HOST, 25)")
-        #Use TLS to add security 
-        smtp.starttls() 
-        print("smtp.starttls() ")
-        #User Authentication - Пароль для внешних приложений
-        smtp.login(FROM, PASSWORD)
-        print("smtp.login(FROM, PASSWORD)")
-        #Defining The Message 
-        MESSAGE = message 
-        print(MESSAGE)
-        # Тело письма
-        BODY = "\r\n".join((
-            "From: %s" % FROM,
-            "To: %s" % TO,
-            "Subject: %s" % SUBJECT ,
-            "",
-            MESSAGE
-        ))
-        print("BODY")
-        BODY = BODY.encode('utf-8')
-        print(BODY)
-        #Sending the Email
-        smtp.sendmail(FROM, TO, BODY) 
-        print("smtp.sendmail(FROM, TO, BODY) ")
-        #Terminating the session 
-        smtp.quit() 
-        print("smtp.quit()")
-        print ("Email sent successfully!") 
-    except Exception as ex: 
-        print("Something went wrong....",ex)
+# Отправка SMS (сервис Voice не работает РФ, Белоруссия, Казахстан).
+#from googlevoice import Voice
+#from googlevoice.util import input
+#send_message("+770112345678", "Заказ #" + str(sale.id) + str(sale.saleday.strftime('%d.%m.%Y %H:%M:%S')) + "\n" + str(sale.catalog) + "\n" + _('price') + ":"  + str(sale.price) + "\n" + _('quantity') + ":" + str(sale.quantity) + "\n" + str(sale.user.first_name) + " " + str(sale.user.last_name) + "\n" + str(sale.details))
+                    
+#def send_message(number, message):
+#    try:
+#        print("send_message")
+#        user = 'rkhmax486@gmail.com'
+#        password = '******'
+#        print(0)
+#        voice = Voice()
+#        print(1)
+#        voice.login(user, password)
+#        print(2)
+#        #number = input('Number to send message to: ') # use these for command method
+#        #message = input('Message text: ')
+#        print(3)
+#        voice.send_sms(number, message)
+#        print ("SMS sent successfully!")        
+#    except Exception as exception:
+#        print(exception)
+#        return HttpResponse(exception)
+
+###################################################################################################
+
+## Отправка почты.
+#def send_email(to, subject, message):
+#    try:
+#        #print(to)
+#        #print(subject)
+#        #print(message)
+#        HOST = "smtp.mail.ru"
+#        print(HOST)
+#        # От кого (пароль для внешних приложений)
+#        FROM = "shop260222@mail.ru"
+#        print(FROM)
+#        PASSWORD = "Nn27t2PMDiJ7rSqWeFuw"
+#        print(PASSWORD)
+#        # Кому
+#        TO = to
+#        print(TO)
+#        # Тема
+#        SUBJECT = subject
+#        print(SUBJECT)
+#        #Create your SMTP session 
+#        smtp = smtplib.SMTP(HOST, 25) 
+#        print("smtp = smtplib.SMTP(HOST, 25)")
+#        #Use TLS to add security 
+#        smtp.starttls() 
+#        print("smtp.starttls() ")
+#        #User Authentication - Пароль для внешних приложений
+#        smtp.login(FROM, PASSWORD)
+#        print("smtp.login(FROM, PASSWORD)")
+#        #Defining The Message 
+#        MESSAGE = message 
+#        print(MESSAGE)
+#        # Тело письма
+#        BODY = "\r\n".join((
+#            "From: %s" % FROM,
+#            "To: %s" % TO,
+#            "Subject: %s" % SUBJECT ,
+#            "",
+#            MESSAGE
+#        ))
+#        print("BODY")
+#        BODY = BODY.encode('utf-8')
+#        print(BODY)
+#        #Sending the Email
+#        smtp.sendmail(FROM, TO, BODY) 
+#        print("smtp.sendmail(FROM, TO, BODY) ")
+#        #Terminating the session 
+#        smtp.quit() 
+#        print("smtp.quit()")
+#        print ("Email sent successfully!") 
+#    except Exception as ex: 
+#        print("Something went wrong....",ex)
 
 
 ###################################################################################################
