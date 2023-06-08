@@ -171,13 +171,23 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
 # Сброс пароля по E-Mail
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'MAbylmazhitov@gmail.com'
+#EMAIL_HOST_PASSWORD = 'Mm242424Gg'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#EMAIL_USE_SSL = False
+#SERVER_EMAIL = EMAIL_HOST_USER
+#DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = 'shop260222@mail.ru' 
 EMAIL_HOST_PASSWORD = 'Nn27t2PMDiJ7rSqWeFuw'
-SERVER_EMAIL = EMAIL_HOST_USER
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL  = 'shop260222@mail.ru'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = True
-
+EMAIL_USE_SSL = False
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
