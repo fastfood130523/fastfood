@@ -171,6 +171,7 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
 # Сброс пароля по E-Mail
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = 'shop260222@mail.ru' 
